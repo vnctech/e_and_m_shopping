@@ -6,6 +6,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.accounts.urls')),  
+    path('', include('apps.projects_management.urls')),  
 ]
 
 # Serve static and media files during development only if DEBUG is True

@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.accounts'
+    'apps.accounts',
+     'apps.projects_management',
 ]
 
 MIDDLEWARE = [
@@ -117,15 +118,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+# Static files settings
+# Static files settings
+STATIC_URL = '/static/'  # This is the base URL for serving static files
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Directory for custom static files
+]
 
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')  # Directory where collected static files will be stored
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
-
+# Media files settings
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
