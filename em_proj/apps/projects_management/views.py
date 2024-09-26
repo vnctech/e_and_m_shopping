@@ -1,20 +1,27 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Category, Subcategory
+from apps.projects_management.models import Product, Category
 
-def product_list(request):
-    categories = Category.objects.all()  
-    subcategories = Subcategory.objects.all()  
-    products = Product.objects.all()  
+
+
+def category_products(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    products = Product.objects.filter(category=category)
     context = {
-        'categories': categories,
-        'subcategories': subcategories,
-        'products': products,
+        'category': category,
+        'products': products
     }
-    return render(request, 'list_view.html', context)
+    return render(request, 'product_list.html', context)
 
 def product_detail(request, product_id):
-    product = get_object_or_404(Product, id=product_id)  
+    product = get_object_or_404(Product, id=product_id)
     context = {
-        'product': product,
+        'product': product
     }
-    return render(request, 'detail_view.html', context)
+    return render(request, 'product_detail.html', context)
+
+def product_list(request):
+    products = Product.objects.all()  
+    context = {
+        'products': products
+    }
+    return render(request, 'product_list.html', context)  

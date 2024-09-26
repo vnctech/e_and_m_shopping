@@ -1,15 +1,8 @@
 from django.contrib import admin
-from .models import Category, Subcategory, Product
-
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name']  
-
-class SubcategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'category'] 
+from .models import Product, Category
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'subcategory', 'price']  
+    list_display = ('name', 'category', 'price', 'availability')  
 
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Subcategory, SubcategoryAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Category)

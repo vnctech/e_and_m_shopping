@@ -1,34 +1,15 @@
-
 {% extends "base.html" %}
-{% load static %}
-
-{% block titile %}
-product_list
-{% endblock titile %}
-
-{% block link %}
-{% endblock link %}
 
 {% block content %}
-<div class="categories">
-    {% for category in categories %}
-        <h2>{{ category.name }}</h2>
-        <p>{{ category.description }}</p>
-        <div class="subcategories">
-            {% for subcategory in category.subcategory_set.all %}
-                <h3>{{ subcategory.name }}</h3>
-                <ul>
-                    {% for product in subcategory.product_set.all %}
-                        <li>
-                            <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a> - ${{ product.price }}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endfor %}
+<div class="products">
+    {% for product in products %}
+        <div class="product">
+            <a href="{% url 'product_detail' product.id %}">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+            </a>
+            <p>Price: ${{ product.price }}</p>
         </div>
     {% endfor %}
 </div>
 {% endblock content %}
-
-{% block script %}
-{% endblock script %}
